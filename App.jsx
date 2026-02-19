@@ -6,6 +6,8 @@ import Register from './pages/Register.jsx'
 import Watch from './pages/Watch.jsx'
 import AdminLogin from './pages/AdminLogin.jsx'
 import Navbar from './components/Navbar.jsx'
+import CategoryVideos from "./pages/CategoryVideos.jsx";
+
 
 function App() {
   return (
@@ -18,6 +20,10 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/watch" element={<Watch />} />
         <Route path="/admin" element={<AdminLogin />} />
+        <Route path="/watch/:category"element={<ProtectedRoute><CategoryVideos /></ProtectedRoute>
+  }
+/>
+
       </Routes>
     </Router>
   )

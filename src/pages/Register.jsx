@@ -1,40 +1,38 @@
 import "../styles/Login.css";
-import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Register() {
   const navigate = useNavigate();
 
-  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+
+  const passwordRegex =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
   const handleRegister = () => {
-    // Basic validations
-    if (!email.includes("@")) {
-      setError("Email must contain @");
+    if (!emailRegex.test(email)) {
+      alert("Email must contain @ and end with @gmail.com");
       return;
     }
 
-    const specialCharRegex = /[!@#$%^&*(),.?":{}|<>]/;
-    if (!specialCharRegex.test(password)) {
-      setError("Password must contain at least one special character");
+    if (!passwordRegex.test(password)) {
+      alert(
+        "Password must be at least 8 characters and include uppercase, lowercase, number, and special character"
+      );
       return;
     }
 
-    if (!name) {
-      setError("Please enter your full name");
-      return;
-    }
+    // Store credentials
+    localStorage.setItem("registeredEmail", email);
+    localStorage.setItem("registeredPassword", password);
 
-    // Save user (fake backend)
-    const user = { name, email, password };
-    localStorage.setItem("registeredUser", JSON.stringify(user));
-
-    setError("");
     alert("Registration successful! Please login.");
 
+    // ✅ Redirect to login (NO auto login)
     navigate("/login");
   };
 
@@ -43,20 +41,11 @@ function Register() {
       <div className="auth-overlay"></div>
 
       <div className="auth-card">
-        <h2>Create Account</h2>
-
-        {error && <p className="auth-error">{error}</p>}
-
-        <input
-          type="text"
-          placeholder="Full Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
+        <h2>Register</h2>
 
         <input
           type="email"
-          placeholder="Email"
+          placeholder="Email (must be @gmail.com)"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
@@ -67,6 +56,10 @@ function Register() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
+
+        <p className="password-hint">
+          Password must contain uppercase, lowercase, number & special character
+        </p>
 
         <button className="btn-primary" onClick={handleRegister}>
           Register

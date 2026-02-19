@@ -1,11 +1,15 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import Home from "./pages/Home.jsx";
-import Login from "./pages/Login.jsx";
-import Register from "./pages/Register.jsx";
-import Watch from "./pages/Watch.jsx";
-import Navbar from "./components/Navbar.jsx";
-import ProtectedRoute from "./components/ProtectedRoute.jsx";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Watch from "./pages/Watch";
+import CategoryVideos from "./pages/CategoryVideos";
+import Profile from "./pages/Profile.jsx";
+
+
+import Navbar from "./components/Navbar";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
@@ -13,11 +17,12 @@ function App() {
       <Navbar />
 
       <Routes>
+        {/* PUBLIC ROUTES */}
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
 
-        {/* PROTECTED WATCH ROUTE */}
+        {/* PROTECTED WATCH ROUTES */}
         <Route
           path="/watch"
           element={
@@ -26,6 +31,25 @@ function App() {
             </ProtectedRoute>
           }
         />
+
+        <Route
+          path="/watch/:category"
+          element={
+            <ProtectedRoute>
+              <CategoryVideos />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            }
+        />
+
       </Routes>
     </Router>
   );
