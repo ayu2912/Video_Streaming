@@ -1,0 +1,76 @@
+/* ── LOADING SKELETONS ── */
+.skeleton-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px 0;
+}
+
+.skeleton-card {
+  background: #0f172a;
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 10px;
+  animation: skeleton-pulse 1.4s ease-in-out infinite;
+}
+
+.skeleton-thumb {
+  width: 100%;
+  height: 150px;
+  background: #1e293b;
+  border-radius: 6px;
+  margin-bottom: 12px;
+}
+
+.skeleton-line {
+  height: 14px;
+  background: #1e293b;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+
+.skeleton-line.short {
+  width: 60%;
+}
+
+@keyframes skeleton-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* ── FEED SECTIONS ── */
+.feed-section {
+  margin-bottom: 40px;
+}
+
+.section-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: #f1f5f9;
+}
+
+/* ── VIDEO DESCRIPTION ── */
+.video-description {
+  color: #94a3b8;
+  font-size: 0.92rem;
+  margin: 8px 0 12px;
+  line-height: 1.5;
+}
+
+/* ── DOWNLOAD BUTTON ── */
+.download-btn {
+  background: #22c55e;
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.download-btn:hover {
+  opacity: 0.85;
+}

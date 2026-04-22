@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -E \"\\\\.\\(js|jsx|json|env|yml|yaml\\)$\")",
+      "Bash(node seed.js)",
+      "Bash(npm install *)",
+      "Bash(node -e \"require\\('./routes/userRoutes'\\)\")",
+      "Bash(node server.js)",
+      "Bash(curl -s -X POST http://127.0.0.1:5000/api/users/forgot-password -H \"Content-Type: application/json\" -d \"{\\\\\"email\\\\\":\\\\\"test@test.com\\\\\"}\")",
+      "Bash(taskkill /F /IM node.exe)",
+      "Bash(curl -s -X POST http://127.0.0.1:5000/api/users/forgot-password -H \"Content-Type: application/json\" -d \"{\\\\\"email\\\\\":\\\\\"notexist@test.com\\\\\"}\")",
+      "Bash(node -e ' *)",
+      "Bash(curl -s http://127.0.0.1:5000/api/users/me)",
+      "Bash(curl -s -X POST http://127.0.0.1:5000/api/users/login -H \"Content-Type: application/json\" -d \"{\\\\\"email\\\\\":\\\\\"a@b.com\\\\\",\\\\\"password\\\\\":\\\\\"x\\\\\"}\")",
+      "Bash(pkill -f \"node server.js\")",
+      "Bash(cmd.exe *)",
+      "Bash(curl -s http://127.0.0.1:5000/api/users/login)",
+      "Bash(powershell.exe *)"
+    ]
+  }
+}

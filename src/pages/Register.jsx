@@ -31,7 +31,7 @@ function Register() {
 
     try {
       const res = await fetch(
-        "http://localhost:5000/api/users/register",
+        "http://127.0.0.1:5000/api/users/register",
         {
           method: "POST",
           headers: {
@@ -43,8 +43,12 @@ function Register() {
 
       const data = await res.json();
 
-      alert(data.message);
+      if (!res.ok) {
+        alert(data.message || "Registration failed");
+        return;
+      }
 
+      alert("Registration successful. Please login.");
       navigate("/login");
     } catch (error) {
       console.error(error);
@@ -57,6 +61,7 @@ function Register() {
       <div className="auth-overlay"></div>
 
       <div className="auth-card">
+        <button className="back-btn-auth" onClick={() => navigate("/")}>← Back</button>
         <h2>Register</h2>
 
         <form onSubmit={handleRegister}>
@@ -67,12 +72,20 @@ function Register() {
             onChange={(e) => setEmail(e.target.value)}
           />
 
-          <input
-            type={showPassword ? "text" : "password"}
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+          <div className="password-wrapper">
+            <input
+              type={showPassword ? "text" : "password"}
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <span
+              className="toggle-password"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? "🙈" : "👁"}
+            </span>
+          </div>
 
           <button type="submit" className="btn-primary">
             Register

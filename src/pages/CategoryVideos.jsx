@@ -1,58 +1,37 @@
-import { useParams } from "react-router-dom";
-import { useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import "../styles/CategoryVideos.css";
+import VideoCard from "../components/VideoCard";
 
 function CategoryVideos() {
   const { category } = useParams();
+  const navigate = useNavigate();
+  const [videos, setVideos] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const videoData = {
-    sports: [
-      { id: "5WJ0ZgZ6XK8", title: "Football Highlights" },
-      { id: "bNpx7gpSqbY", title: "Cricket Match" },
-      { id: "Ic8Y4vWbM6Q", title: "NBA Game" },
-      { id: "3GwjfUFyY6M", title: "Tennis Finals" },
-      { id: "XIMLoLxmTDw", title: "Olympics Highlights" },
-    ],
-    music: [
-      { id: "kJQP7kiw5Fk", title: "Despacito" },
-      { id: "OPf0YbXqDm0", title: "Uptown Funk" },
-      { id: "JGwWNGJdvx8", title: "Shape of You" },
-      { id: "3tmd-ClpJxA", title: "Counting Stars" },
-      { id: "l482T0yNkeo", title: "Sweet Child O Mine" },
-    ],
-  };
-
-  const handleWatch = (video) => {
-    const history = JSON.parse(localStorage.getItem("watchHistory")) || [];
-
-    const newEntry = {
-      ...video,
-      category,
-      watchedAt: new Date().toLocaleString(),
-    };
-
-    const updatedHistory = [newEntry, ...history];
-
-    localStorage.setItem("watchHistory", JSON.stringify(updatedHistory));
-  };
+  useEffect(() => {
+    fetch(`http://127.0.0.1:5000/api/videos/category/${category}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setVideos(data);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
+  }, [category]);
 
   return (
     <div className="category-page">
-      <h2 className="category-title">
-        {category.toUpperCase()} Streams
-      </h2>
+      <button className="back-btn-auth" onClick={() => navigate(-1)}>← Back</button>
+      <h2 className="category-title">{category.charAt(0).toUpperCase() + category.slice(1)} Videos</h2>
 
-      <div className="video-grid">
-        {videoData[category]?.map((video, index) => (
-          <div className="video-card" key={index}>
-            <iframe
-              src={`https://www.youtube.com/embed/${video.id}`}
-              title={video.title}
-              frameBorder="0"
-              allowFullScreen
-              onLoad={() => handleWatch(video)}
-            ></iframe>
-          </div>
+      {loading && <p style={{ color: "#aaa" }}>Loading...</p>}
+
+      <div className="feed-grid">
+        {!loading && videos.length === 0 && (
+          <p style={{ color: "#aaa" }}>No videos available for this category.</p>
+        )}
+        {videos.map((video) => (
+          <VideoCard key={video._id} video={video} />
         ))}
       </div>
     </div>

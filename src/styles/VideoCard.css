@@ -1,0 +1,72 @@
+.vc-card {
+  background: #0f172a;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.vc-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(255, 77, 77, 0.2);
+}
+
+.vc-thumb-wrap {
+  position: relative;
+}
+
+.vc-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+}
+
+.vc-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: #ff4d4d;
+  color: white;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.vc-info {
+  padding: 12px;
+}
+
+.vc-info h4 {
+  color: #e2e8f0;
+  font-size: 0.95rem;
+  margin: 0 0 8px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.vc-meta {
+  display: flex;
+  gap: 12px;
+  color: #94a3b8;
+  font-size: 0.8rem;
+}
+
+.vc-progress-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.vc-progress-fill {
+  height: 100%;
+  background: #ff4d4d;
+  border-radius: 0 2px 2px 0;
+}

@@ -1,0 +1,150 @@
+.upload-page {
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #000, #0b1c2d);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 60px 24px;
+  color: white;
+}
+
+.upload-card {
+  width: 100%;
+  max-width: 640px;
+  background: #0f172a;
+  border-radius: 16px;
+  padding: 40px;
+  border: 1px solid #1e293b;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+}
+
+.back-btn-upload {
+  background: none;
+  border: none;
+  color: #64748b;
+  font-size: 0.88rem;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 24px;
+  display: block;
+  transition: color 0.2s;
+}
+.back-btn-upload:hover { color: white; }
+
+.upload-card h2 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.upload-sub {
+  color: #64748b;
+  font-size: 0.9rem;
+  margin-bottom: 28px;
+}
+
+.upload-error {
+  background: rgba(255, 77, 77, 0.12);
+  border: 1px solid rgba(255, 77, 77, 0.35);
+  color: #ff4d4d;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  margin-bottom: 20px;
+}
+
+.upload-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #cbd5e1;
+}
+
+.optional {
+  font-weight: 400;
+  color: #475569;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  background: #1e293b;
+  border: 1px solid #334155;
+  color: white;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 0.92rem;
+  outline: none;
+  transition: border-color 0.2s;
+  font-family: inherit;
+  resize: vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  border-color: #ff4d4d;
+}
+
+.form-group select option {
+  background: #1e293b;
+}
+
+.form-hint {
+  font-size: 0.75rem;
+  color: #475569;
+  margin-top: 2px;
+}
+
+.thumb-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.thumb-preview label {
+  font-size: 0.82rem;
+  color: #64748b;
+}
+
+.thumb-preview img {
+  width: 100%;
+  max-width: 320px;
+  border-radius: 8px;
+  border: 1px solid #1e293b;
+  object-fit: cover;
+}
+
+.upload-submit-btn {
+  background: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 13px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+  margin-top: 4px;
+}
+
+.upload-submit-btn:hover:not(:disabled) {
+  background: #ff2f2f;
+  transform: translateY(-1px);
+}
+
+.upload-submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
